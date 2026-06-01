@@ -32,6 +32,31 @@ A super simple FastAPI application that allows students to view and sign up for 
 | GET    | `/activities`                                                     | Get all activities with their details and current participant count |
 | POST   | `/activities/{activity_name}/signup?email=student@mergington.edu` | Sign up for an activity                                             |
 
+## Testing
+
+Backend tests are organized in a dedicated directory:
+
+- `tests/backend/test_api.py`
+- `tests/backend/conftest.py`
+
+The test suite follows the AAA pattern in each test:
+
+1. Arrange: prepare test data and expected values
+2. Act: perform a single API call
+3. Assert: validate status codes and response behavior
+
+Run all tests from the repository root:
+
+```bash
+./.venv/bin/python -m pytest -q
+```
+
+Run only backend tests:
+
+```bash
+./.venv/bin/python -m pytest -q tests/backend
+```
+
 ## Data Model
 
 The application uses a simple data model with meaningful identifiers:

@@ -1,6 +1,30 @@
 from src.app import activities
 
 
+def test_get_root_returns_redirect_to_static_index(client):
+    # Arrange
+    expected_location = "/static/index.html"
+
+    # Act
+    response = client.get("/", follow_redirects=False)
+
+    # Assert
+    assert response.status_code == 307
+    assert response.headers["location"] == expected_location
+
+
+def test_get_root_redirect_target_returns_html(client):
+    # Arrange
+    expected_content_type = "text/html"
+
+    # Act
+    response = client.get("/")
+
+    # Assert
+    assert response.status_code == 200
+    assert expected_content_type in response.headers["content-type"]
+
+
 def test_get_activities_returns_expected_structure(client):
     # Arrange
     expected_keys = {"description", "schedule", "max_participants", "participants"}
